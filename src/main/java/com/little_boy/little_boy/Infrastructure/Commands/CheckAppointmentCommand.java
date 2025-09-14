@@ -44,7 +44,7 @@ public class CheckAppointmentCommand implements CommandLineRunner
         CheckAppointmentHandler handler = new CheckAppointmentHandler(driver, client, office);
         handler.handle();
 
-        //driver.quit();
+        driver.quit();
 
         System.out.println("✅ Proceso finalizado");
 
