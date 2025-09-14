@@ -11,18 +11,21 @@ public class Office {
     private Long id;
 
 
-    private String name;
+    private String city;
+    private String address;
+    @Column(name = "procedure_name")
     private String procedure;
-    private String input_name_id;
+    private String input_address_id;
     private String input_procedure_id;
 
 
     public Office(){}
 
-    public Office(String id, String name, String procedure, String input_name_id, String input_procedure_id) {
-        this.name = name;
+    public Office(String id, String city ,String address, String procedure, String input_address_id, String input_procedure_id) {
+        this.city = city;
+        this.address = address;
         this.procedure = procedure;
-        this.input_name_id = input_name_id;
+        this.input_address_id = input_address_id;
         this.input_procedure_id = input_procedure_id;
     }
 
@@ -34,12 +37,20 @@ public class Office {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getCity() {
+        return city;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getProcedure() {
@@ -50,12 +61,12 @@ public class Office {
         this.procedure = procedure;
     }
 
-    public String getInput_name_id() {
-        return input_name_id;
+    public String getInput_address_id() {
+        return input_address_id;
     }
 
-    public void setInput_name_id(String input_name_id) {
-        this.input_name_id = input_name_id;
+    public void setInput_address_id(String input_address_id) {
+        this.input_address_id = input_address_id;
     }
 
     public String getInput_procedure_id() {
