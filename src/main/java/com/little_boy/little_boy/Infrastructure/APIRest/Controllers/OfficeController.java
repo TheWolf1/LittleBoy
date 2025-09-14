@@ -1,4 +1,4 @@
-package com.little_boy.little_boy.Application.Controllers;
+package com.little_boy.little_boy.Infrastructure.APIRest.Controllers;
 
 import com.little_boy.little_boy.Domain.Office.Entities.Office;
 import com.little_boy.little_boy.Domain.Office.Services.OfficeService;

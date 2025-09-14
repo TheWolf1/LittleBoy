@@ -1,4 +1,4 @@
-package com.little_boy.little_boy.Application.Controllers;
+package com.little_boy.little_boy.Infrastructure.APIRest.Controllers;
 
 import com.little_boy.little_boy.Domain.Client.Entities.Client;
 import com.little_boy.little_boy.Domain.Client.Services.ClientService;
