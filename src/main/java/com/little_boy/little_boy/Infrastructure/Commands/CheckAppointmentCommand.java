@@ -6,14 +6,13 @@ import com.little_boy.little_boy.Domain.Client.Services.ClientService;
 import com.little_boy.little_boy.Domain.Office.Entities.Office;
 import com.little_boy.little_boy.Domain.Office.Services.OfficeService;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CheckAppointmentCommand implements CommandLineRunner
+public class CheckAppointmentCommand
 {
     private final ClientService clientService;
     private final OfficeService officeService;
@@ -23,7 +22,7 @@ public class CheckAppointmentCommand implements CommandLineRunner
         this.officeService = officeService;
     }
 
-    @Override
+
     public void run(String... args) throws Exception {
 
         System.out.println("Ejecutamos el comando de check appointment");
