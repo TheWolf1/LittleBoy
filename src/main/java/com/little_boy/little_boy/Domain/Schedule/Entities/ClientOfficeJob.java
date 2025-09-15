@@ -4,6 +4,10 @@ import com.little_boy.little_boy.Domain.Client.Entities.Client;
 import com.little_boy.little_boy.Domain.Office.Entities.Office;
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "client_office_jobs")
 public class ClientOfficeJob {
 
     @Id
@@ -11,20 +15,26 @@ public class ClientOfficeJob {
     private Long id;
 
     // Relación con Cliente
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 
     // Relación con Oficina
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "office_id", nullable = false)
     private Office office;
 
     // Programación estilo cron (ejemplo: "0 0 * * * *" → cada hora)
+    @Column(name = "cron_expression", nullable = false)
     private String cronExpression;
 
-    // Podrías tener un estado del job
+    // Estado del job
+    @Column(name = "active", nullable = false)
     private boolean active = true;
+
+    // Última ejecución para evitar duplicidades
+    @Column(name = "last_executed_at")
+    private LocalDateTime lastExecutedAt;
 
     public ClientOfficeJob() {}
 
@@ -73,5 +83,13 @@ public class ClientOfficeJob {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public LocalDateTime getLastExecutedAt() {
+        return lastExecutedAt;
+    }
+
+    public void setLastExecutedAt(LocalDateTime lastExecutedAt) {
+        this.lastExecutedAt = lastExecutedAt;
     }
 }
