@@ -4,6 +4,11 @@ import com.little_boy.little_boy.Domain.Client.Entities.Client;
 import com.little_boy.little_boy.Domain.Office.Entities.Office;
 import org.openqa.selenium.WebDriver;
 
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
 public class CheckAppointmentHandler {
 
     public static final String URL_BASE="https://icp.administracionelectronica.gob.es/icpplus/index.html";
@@ -21,6 +26,12 @@ public class CheckAppointmentHandler {
 
 
     public void handle(){
+
+        // 1. Verificar status code antes de Selenium
+        if (!isUrlAvailable()) {
+            System.out.println("⚠️ El servidor devolvió 429 Too Many Requests. Abortando proceso.");
+            return;
+        }
 
         this.driver.get(URL_BASE);
 
@@ -50,6 +61,25 @@ public class CheckAppointmentHandler {
             System.out.println("no hay citas disponibles");
         }
 
+    }
+
+    private boolean isUrlAvailable() {
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(URL_BASE))
+                    .header("User-Agent", "Mozilla/5.0")
+                    .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            int statusCode = response.statusCode();
+            System.out.println("📡 Status code recibido: " + statusCode);
+
+            return statusCode != 429; // si es 429 → bloquear
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false; // si falla la conexión, también bloquea
+        }
     }
 }
 
