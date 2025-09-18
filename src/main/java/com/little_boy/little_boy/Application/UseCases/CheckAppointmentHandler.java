@@ -2,6 +2,7 @@ package com.little_boy.little_boy.Application.UseCases;
 
 import com.little_boy.little_boy.Domain.Client.Entities.Client;
 import com.little_boy.little_boy.Domain.Office.Entities.Office;
+import com.little_boy.little_boy.Infrastructure.Services.WhatsappService;
 import org.openqa.selenium.WebDriver;
 
 import java.net.URI;
@@ -51,10 +52,14 @@ public class CheckAppointmentHandler {
 
         manager.submitOnButton("btnEnviar");
 
+
+        WhatsappService ws = new WhatsappService();
         if (manager.hayCitasDisponibles()){
-            System.out.println("Si hay citas disponibles");
+
+            // Enviamos notificación por whatsapp si encontramos la cita
+            ws.sendNotification("Se ha encontrado una cita disponible en "+this.office.getCity());
         }else{
-            System.out.println("no hay citas disponibles");
+            ws.sendNotification("Se ha encontrado una cita disponible en "+this.office.getCity());
         }
 
     }
