@@ -59,7 +59,7 @@ public class CheckAppointmentHandler {
             // Enviamos notificación por whatsapp si encontramos la cita
             ws.sendNotification("Se ha encontrado una cita disponible en "+this.office.getCity());
         }else{
-            ws.sendNotification("Se ha encontrado una cita disponible en "+this.office.getCity());
+            System.out.println("No se han encontrado citas disponibles.");
         }
 
     }
