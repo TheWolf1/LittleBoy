@@ -36,8 +36,10 @@ public class CheckAppointmentHandler {
 
         System.out.println("Iniciando proceso de scrapping");
 
+        System.out.println("Selecciónando la ciudad de "+this.office.getCity());
         manager.selectCity(this.office.getCity());
 
+        System.out.println("En la oficina "+this.office.getAddress());
         manager.selectOfficeAndProcedure(this.office.getAddress(), this.office.getProcedure());
 
         // Nos aseguramos que existe el button y damos en entrar
@@ -45,6 +47,7 @@ public class CheckAppointmentHandler {
 
         manager.setDataClient(this.client);
 
+        System.out.println("Agregando los datos del cliente"+" "+this.client.getName()+" "+this.client.getLastname());
         manager.writeTextInputManager("txtAnnoCitado", this.client.getBirthday());
 
         manager.selectInputManager("txtPaisNac", this.client.getNationality());
@@ -52,10 +55,8 @@ public class CheckAppointmentHandler {
 
         manager.submitOnButton("btnEnviar");
 
-
-        WhatsappService ws = new WhatsappService();
         if (manager.hayCitasDisponibles()){
-
+            WhatsappService ws = new WhatsappService();
             // Enviamos notificación por whatsapp si encontramos la cita
             ws.sendNotification("Se ha encontrado una cita disponible en "+this.office.getCity());
         }else{
