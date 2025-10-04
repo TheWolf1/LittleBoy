@@ -8,7 +8,6 @@ import com.little_boy.little_boy.Domain.Office.Services.OfficeService;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -31,8 +30,10 @@ public class CheckAppointmentCommand
 
         FirefoxOptions firefoxOptions = new FirefoxOptions();
 
-        //firefoxOptions.addArguments("--headless");
-        firefoxOptions.addArguments("--window-size=1920,1080");
+        // Headless en servidor y tamaño estable (Firefox usa --width/--height)
+        firefoxOptions.addArguments("--headless");
+        firefoxOptions.addArguments("--width=1920");
+        firefoxOptions.addArguments("--height=1080");
 
         // Lanzar Selenium
         WebDriver driver = new FirefoxDriver(firefoxOptions);
@@ -46,6 +47,7 @@ public class CheckAppointmentCommand
         driver.quit();
 
         System.out.println("✅ Proceso finalizado");
+
 
     }
 }

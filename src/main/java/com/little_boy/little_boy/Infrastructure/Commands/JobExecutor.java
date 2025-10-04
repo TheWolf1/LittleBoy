@@ -40,8 +40,11 @@ public class JobExecutor {
                 try {
                     System.setProperty("webdriver.firefox.driver", "/usr/bin/firefox");
                     FirefoxOptions firefoxOptions = new FirefoxOptions();
-                    // firefoxOptions.addArguments("--headless");
-                    firefoxOptions.addArguments("--window-size=1920,1080");
+
+                    // Headless + tamaño estable en Firefox
+                    firefoxOptions.addArguments("--headless");
+                    firefoxOptions.addArguments("--width=1920");
+                    firefoxOptions.addArguments("--height=1080");
 
                     driver = new FirefoxDriver(firefoxOptions);
 
