@@ -5,11 +5,6 @@ import com.little_boy.little_boy.Domain.Office.Entities.Office;
 import com.little_boy.little_boy.Infrastructure.Services.WhatsappService;
 import org.openqa.selenium.WebDriver;
 
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-
 public class CheckAppointmentHandler {
 
     public static final String URL_BASE="https://icp.administracionelectronica.gob.es/icpplus/index.html";
@@ -27,8 +22,6 @@ public class CheckAppointmentHandler {
 
 
     public void handle(){
-
-
 
         this.driver.get(URL_BASE);
 
@@ -57,7 +50,7 @@ public class CheckAppointmentHandler {
 
         if (manager.hayCitasDisponibles()){
             WhatsappService ws = new WhatsappService();
-            // Enviamos notificación por whatsapp si encontramos la cita
+            // Enviamos notificación por WhatsApp si encontramos la cita
             ws.sendNotification("Se ha encontrado una cita disponible en "+this.office.getCity());
         }else{
             System.out.println("No se han encontrado citas disponibles.");

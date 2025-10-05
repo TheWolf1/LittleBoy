@@ -11,6 +11,7 @@ import org.springframework.scheduling.support.CronExpression;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 @Component
@@ -27,7 +28,7 @@ public class JobExecutor {
     public void checkJobs() {
         List<ClientOfficeJob> jobs = jobRepository.findAll();
 
-        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime now = LocalDateTime.now(ZoneId.of("Europe/Madrid"));
 
         for (ClientOfficeJob job : jobs) {
             if (!job.isActive()) continue;
