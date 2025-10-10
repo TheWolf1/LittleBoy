@@ -5,6 +5,7 @@ import com.little_boy.little_boy.Domain.Client.Entities.Client;
 import com.little_boy.little_boy.Domain.Client.Services.ClientService;
 import com.little_boy.little_boy.Domain.Office.Entities.Office;
 import com.little_boy.little_boy.Domain.Office.Services.OfficeService;
+import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
